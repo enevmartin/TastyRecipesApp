@@ -1,0 +1,38 @@
+{% load static %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TastyRecipesApp</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+</head>
+<body>
+    <div id="box">
+        <header>
+            <!-- Navigation Bar -->
+            <h1><a class="index-navigation" href="{% url 'home' %}">Tasty Recipes</a></h1>
+            <nav>
+                <!-- Check if the user is authenticated -->
+                {% if profile %}
+                    <!-- If authenticated, show these links -->
+                    <a href="{% url 'catalogue' %}">Catalogue</a>
+                    <a href="{% url 'recipe_create' %}">Create Recipe</a>
+                    <a href="{% url 'profile_details' %}">Profile</a>
+                {% else %}
+                    <!-- If not authenticated, show this link -->
+                    <a href="{% url 'profile_create' %}">Create Profile</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+    {% block content %}
+    {% endblock %}
+
+        <!-- footer -->
+        <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>
+    </div>
+</body>
+</html>

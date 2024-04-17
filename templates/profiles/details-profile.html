@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- profile details section -->
+<section id="profile-details">
+  <h1>Profile Details</h1>
+  <div class="info-section">
+    <div class="profile-header">
+      <!-- profile image -->
+      <img class="profile-img" src="{{ profile.image.url }}" alt="profile image">
+
+      <!-- profile full name -->
+      <h1>{{ profile.user.get_full_name }}</h1>
+
+      <!-- profile nickname -->
+      <p class="description">Nickname: {{ profile.nickname }}</p>
+
+      <!-- profile bio -->
+      <p class="description">Bio: {% if profile.bio %}{{ profile.bio }}{% else %}N/A{% endif %}</p>
+
+      <!-- total number of published recipes -->
+      <p class="description">Published recipes: {{ profile.published_recipes.count }}</p>
+
+      <!-- Edit/Delete buttons -->
+      <div class="buttons">
+        <a href="{% url 'profile_edit' %}" class="edit-button">Edit</a>
+        <!-- Assuming you have a delete_profile view -->
+        <a href="{% url 'profile_delete' %}" class="delete-button">Delete</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
